@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/34040658/165857176-c795ff34-bf2f-4d45-9951-9de19fc0c7bc.png" />
+  <img src="https://user-images.githubusercontent.com/34040658/165858414-9aacbaa1-1ead-4728-9897-f50bea4388bd.png" />
   <h4> Small description of project </h4>
   
   <a href="https://github.com/Fableverse/api-template/releases"
