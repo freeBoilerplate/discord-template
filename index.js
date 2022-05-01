@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 	commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
 	try {
@@ -45,13 +45,19 @@ client.on('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-	console.log(interaction.isCommand)
-	if (!interaction.isCommand()) return;
+	if (interaction.isButton()) {
+		const command = require(`./commands/buttons/${interaction.customId}`);
+		if (!command) return
 
-	const command = require(`./commands/${interaction.commandName}`);
-	if (!command) return
+		await command.func(client, interaction)
+	} else {
+		if (!interaction.isCommand()) return;
 
-	await command.func(client, interaction)
-	console.log(`Successfully ran the /${interaction.commandName} command.`)
+		const command = require(`./commands/${interaction.commandName}`);
+		if (!command) return
+	
+		await command.func(client, interaction)
+		console.log(`Successfully ran the /${interaction.commandName} command.`)
+	}
 });
 client.login(process.env.DISCORD_TOKEN);

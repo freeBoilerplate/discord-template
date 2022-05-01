@@ -7,7 +7,8 @@ const data = new SlashCommandBuilder()
 	.setDefaultPermission(true)
 
 const func = async (client, interaction) => {
-    await interaction.reply("pong")
+	let channel = await interaction.guild.channels.fetch(channelId)
+    channel.send(message)
 }
 
-module.exports = { data, func}
+module.exports = { data, func }
