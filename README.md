@@ -1,6 +1,9 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/34040658/166164449-6db248d5-d182-4869-a259-19fad611293b.png" />
-  <h4> Small description of project </h4>
+  <h1> 
+    <img alt="fableverse logo" src="https://user-images.githubusercontent.com/34040658/166625392-dcec9672-fd76-4914-a991-715c58cdd3c5.png" width="100px"/><br/>
+    Discord Bot Template 
+  </h1>
+  <h4> A template for building Discord bots with Discord.js </h4>
   
   <a href="https://github.com/Fableverse/api-template/releases"
     ><img
