@@ -4,7 +4,8 @@
   "description": "<div align=\"center\">\r   <img src=\"https://user-images.githubusercontent.com/34040658/165858414-9aacbaa1-1ead-4728-9897-f50bea4388bd.png\" />\r   <h4> Small description of project </h4>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
