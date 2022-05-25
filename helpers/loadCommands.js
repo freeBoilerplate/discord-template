@@ -8,7 +8,7 @@ module.exports = async (client) => {
             const command = require(`../commands/${dir}/${file}`)
             client.commands.set(command.name.toLowerCase(), command.execute)
             delete require.cache[require.resolve(`../commands/${dir}/${file}`)];
-            console.log(`✔ '${command.name.toLowerCase()}'`)
+            console.log(`✔ '${dir}: ${command.name.toLowerCase()}'`)
         }
     })
     console.log("\nCommand loading complete!")

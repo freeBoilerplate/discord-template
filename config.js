@@ -1,3 +1,4 @@
 module.exports = {
-    presenceMessage: 'Placeholder ❤️'
+    presenceMessage: 'Placeholder ❤️',
+    commandPrefix: "!"
 }

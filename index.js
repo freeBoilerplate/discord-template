@@ -9,7 +9,7 @@ const loadEvents = require('./helpers/loadEvents');
 require('dotenv').config()
 
 // Setting up Client
-const client = new Client({ intents: [
+global.client = new Client({ intents: [
     "GUILDS",
     "GUILD_BANS",
     "GUILD_MEMBERS",

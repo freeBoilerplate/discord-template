@@ -8,7 +8,7 @@ module.exports = async (client) => {
             const event = require(`../events/${dir}/${file}`)
             const eventName = file.split('.')[0]
             client.on(eventName, event)
-            console.log(`✔ '${eventName}'`)
+            console.log(`✔ '${dir}: ${eventName}'`)
         }
     })
     console.log("\nEvents loading complete!")
