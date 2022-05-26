@@ -15,10 +15,14 @@ module.exports = (message) => {
 
     // Find command
     let command = global.client.commands.get(args[0])
+    let alias = global.client.aliases.get(args[0])
 
     // Check if valid command
-    if (!command) return
+    if (!command && !alias) return
+
+    // Log Command
+    console.log(`Command Executed: ${config.commandPrefix}${args[0]} by ${message.author.username}#${message.author.discriminator}`)
 
     // Execute command
-    command(global.client, message, args.slice(1))
+    command ? command(global.client, message, args.slice(1)) : alias(global.client, message, args.slice(1))
 }
