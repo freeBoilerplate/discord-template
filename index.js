@@ -37,6 +37,7 @@ client.buttonActions = new Collection();
 
 
 const startup = async () => {
+  console.log("========================= START =========================")
   // Load Events
   await loadEvents(client)
 
@@ -48,6 +49,7 @@ const startup = async () => {
 
   // Login
   client.login(process.env.DISCORD_TOKEN);
+  console.log("\n========================= END =========================")
 }
 
 // Start the Bot
