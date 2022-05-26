@@ -1,7 +1,6 @@
 module.exports = {
-    name: 'ping',
-    description: '',
-    aliases: ['p'],
+    name: 'exampleClick',
+    aliases: [],
     execute: (client, message, args) => {
         message.reply('Pong!')
     }

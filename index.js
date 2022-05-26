@@ -2,6 +2,7 @@
 
 // Imports of packages
 const { Client, Intents, Collection } = require('discord.js');
+const loadButtonActions = require('./helpers/loadButtonActions');
 const loadCommands = require('./helpers/loadCommands');
 const loadEvents = require('./helpers/loadEvents');
 
@@ -30,11 +31,24 @@ global.client = new Client({ intents: [
 client.commands = new Collection();
 client.aliases = new Collection();
 
-// Load Events
-loadEvents(client)
+// Setup Collection for storing actions
+client.buttonActions = new Collection();
 
-// Load Commands
-loadCommands(client)
 
-// Login
-client.login(process.env.DISCORD_TOKEN);
+
+const startup = async () => {
+  // Load Events
+  await loadEvents(client)
+
+  // Load Commands
+  await loadCommands(client)
+
+  // Load Button Actions
+  await loadButtonActions(client)
+
+  // Login
+  client.login(process.env.DISCORD_TOKEN);
+}
+
+// Start the Bot
+startup()

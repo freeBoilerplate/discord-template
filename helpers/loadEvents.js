@@ -1,25 +1,28 @@
 const fs = require('node:fs');
+const getAllFiles = require('./getAllFiles');
 
 module.exports = async (client) => {
-    console.log("\nLoading up event listeners...")
+    console.log("\nLoading up the events...")
     
-    // Find each directory within events
-    fs.readdirSync('./events/').forEach(dir => {
-        // Find each file (event), within the directory
-        let dirEvents = fs.readdirSync(`./events/${dir}`).filter(files => files.endsWith('.js'))
-        for (const file of dirEvents) {
-            // Read in the event file
-            const event = require(`../events/${dir}/${file}`)
+    const files = await getAllFiles('events')
+    
+    // Add each command from files
+    for (let i = 0; i < files.length; i++) {
+        // Get file
+        let file = files[i]
 
-            // Get the event name from filename
-            const eventName = file.split('.')[0]
+        // Get data from file
+        const event = require(`../${file}`)
+            
+        // Get the event name from filename
+        let eventName = file.split('.')[0]
+        eventName = eventName.split('\\')
+        eventName = eventName[eventName.length - 1]
 
-            // Watch the event and give it it's function
-            client.on(eventName, event)
+        // Watch the event and give it it's function
+        client.on(eventName, event)
 
-            // Logging for devs
-            console.log(`✔ '${dir}: ${eventName}'`)
-        }
-    })
-    console.log("\nEvents loading complete!")
+        // Logging for devs
+        console.log(`✔ ${eventName}`)
+    }
 }
