@@ -23,6 +23,6 @@ module.exports = async (client) => {
         client.on(eventName, event)
 
         // Logging for devs
-        console.log(`✔ ${eventName}`)
+        console.log(`✅ ${eventName}`)
     }
 }

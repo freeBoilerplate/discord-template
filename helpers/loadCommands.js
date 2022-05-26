@@ -14,18 +14,24 @@ module.exports = async (client) => {
         // Get data from file
         const command = require(`../${file}`)
 
-        // Add the command to the collection
-        client.commands.set(command.name.toLowerCase(), command.execute)
+        // Ignore if disabled
+        if (!command.disabled) {
+            // Add the command to the collection
+            client.commands.set(command.name.toLowerCase(), command.execute)
 
-        // Adds the aliases
-        for (let j = 0; j < command.aliases.length; j++) {
-            client.aliases.set(command.aliases[j].toLowerCase(), command.execute)
+            // Adds the aliases
+            for (let j = 0; j < command.aliases.length; j++) {
+                client.aliases.set(command.aliases[j].toLowerCase(), command.execute)
+            }
+
+            // Logging for devs
+            console.log(`✅ ${command.name.toLowerCase()}`)
+        } else {
+            // Logging for devs
+            console.log(`❌ ${command.name.toLowerCase()}`)
         }
 
         // Delete the import cache for optimization
         delete require.cache[require.resolve(`../${file}`)];
-
-        // Logging for devs
-        console.log(`✔ ${command.name.toLowerCase()}`)
     }
 }

@@ -1,6 +1,6 @@
 const config = require('../../config')
 
-module.exports = (message) => {
+module.exports = async (message) => {
     // Check to make sure the global variable is set for Client
     if (!global.client) return
 
@@ -21,8 +21,12 @@ module.exports = (message) => {
     if (!command && !alias) return
 
     // Log Command
-    console.log(`Command Executed: ${config.commandPrefix}${args[0]} by ${message.author.username}#${message.author.discriminator}`)
+    console.log(`▶ Command: ${config.commandPrefix}${args[0]} (${message.author.username}#${message.author.discriminator})`)
 
     // Execute command
-    command ? command(global.client, message, args.slice(1)) : alias(global.client, message, args.slice(1))
+    if (command) {
+        await command(global.client, message, args.slice(1))
+    } else {
+        await alias(global.client, message, args.slice(1))
+    }
 }
