@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const getAllFiles = require('./getAllFiles');
+const getAllFiles = require('../helpers/getAllFiles');
 
 module.exports = async (client) => {
     console.log("\nLoading up the Button Actions...")
@@ -12,7 +12,7 @@ module.exports = async (client) => {
         let file = files[i]
 
         // Get data from file
-        const command = require(`../${file}`)
+        const command = require(`../../${file}`)
 
         // Ignore if disabled
         if (!command.disabled) {
@@ -20,15 +20,15 @@ module.exports = async (client) => {
             client.buttonActions.set(command.name, command.execute)
 
             // Logging for devs
-            console.log(`✅ ${command.name}`)
+            console.log(`${"\x1b[32m"}${command.name}${"\x1b[0m"}`)
         } else {
             // Logging for devs
-            console.log(`❌ ${command.name}`)
+            console.log(`${"\x1b[31m"}${command.name}${"\x1b[0m"}`)
         }
 
 
         // Delete the import cache for optimization
-        delete require.cache[require.resolve(`../${file}`)];
+        delete require.cache[require.resolve(`../../${file}`)];
 
 
     }

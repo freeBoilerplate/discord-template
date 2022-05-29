@@ -21,7 +21,7 @@ module.exports = async (message) => {
     if (!command && !alias) return
 
     // Log Command
-    console.log(`▶ Command: ${config.commandPrefix}${args[0]} (${message.author.username}#${message.author.discriminator})`)
+    console.log(`${"\x1b[32m"}Command: ${"\x1b[0m"}${config.commandPrefix}${args[0]} (${message.author.username}#${message.author.discriminator})`)
 
     // Execute command
     if (command) {

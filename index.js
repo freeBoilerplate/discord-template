@@ -1,10 +1,11 @@
 // Current Invite Link: https://discord.com/oauth2/authorize?client_id=968648306689466458&permissions=8&scope=bot%20applications.commands
 
 // Imports of packages
-const { Client, Intents, Collection } = require('discord.js');
-const loadButtonActions = require('./helpers/loadButtonActions');
-const loadCommands = require('./helpers/loadCommands');
-const loadEvents = require('./helpers/loadEvents');
+const { Client, Collection } = require('discord.js');
+const loadButtonActions = require('./scripts/loaders/loadButtonActions');
+const loadCommands = require('./scripts/loaders/loadCommands');
+const loadEvents = require('./scripts/loaders/loadEvents');
+const loadJobs = require('./scripts/loaders/loadJobs');
 
 // Setup env variables
 require('dotenv').config()
@@ -37,7 +38,6 @@ client.buttonActions = new Collection();
 
 
 const startup = async () => {
-  console.log("========================= START =========================")
   // Load Events
   await loadEvents(client)
 
@@ -47,9 +47,11 @@ const startup = async () => {
   // Load Button Actions
   await loadButtonActions(client)
 
+  // Load Jobs
+  await loadJobs(client)
+
   // Login
   client.login(process.env.DISCORD_TOKEN);
-  console.log("\n========================= END =========================")
 }
 
 // Start the Bot
