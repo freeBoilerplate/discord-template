@@ -15,7 +15,7 @@ module.exports = async (client) => {
         const event = require(`../${file}`)
             
         // Get the event name from filename
-        let eventName = file.split('.')[0]
+        let eventName = file.split('.')[0].split('/').join("\\")
         eventName = eventName.split('\\')
         eventName = eventName[eventName.length - 1]
 
