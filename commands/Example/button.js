@@ -5,6 +5,7 @@ module.exports = {
     description: '',
     aliases: ['b'],
     disabled: false,
+    admin: false,
     execute: async (client, message, args) => {
         const row = new MessageActionRow()
         .addComponents(

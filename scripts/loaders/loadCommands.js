@@ -17,11 +17,11 @@ module.exports = async (client) => {
         // Ignore if disabled
         if (!command.disabled) {
             // Add the command to the collection
-            client.commands.set(command.name.toLowerCase(), command.execute)
+            client.commands.set(command.name.toLowerCase(), command)
 
             // Adds the aliases
             for (let j = 0; j < command.aliases.length; j++) {
-                client.aliases.set(command.aliases[j].toLowerCase(), command.execute)
+                client.aliases.set(command.aliases[j].toLowerCase(), command)
             }
 
             // Logging for devs

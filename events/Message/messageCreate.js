@@ -20,12 +20,21 @@ module.exports = async (message) => {
     // Check if valid command
     if (!command && !alias) return
 
+    // Check for proper permissions
+    if (command.admin) {
+        // Get users admin permission
+        const isAdmin = await message.member.permissions.has('ADMINISTRATOR')
+
+        // Exit command, as they are not an admin
+        if (!isAdmin) return
+    }
+
     // Log Command
     console.log(`${"\x1b[32m"}Command: ${"\x1b[0m"}${config.commandPrefix}${args[0]} (${message.author.username}#${message.author.discriminator})`)
 
     // Execute command
     if (command) {
-        await command(global.client, message, args.slice(1))
+        await command.execute(global.client, message, args.slice(1))
     } else {
         await alias(global.client, message, args.slice(1))
     }
