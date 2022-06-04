@@ -37,6 +37,22 @@ To start it up, run
 npm start
 ```
 
+## Docker Command
+Build Image
+```
+docker build . -t discordbot
+```
+
+Run Image
+```
+docker run -d -it -e DISCORD_TOKEN='' discordbot
+```
+
+Pull in the Example Container (for testing docker really). 
+```
+docker pull pessman/discord_bot
+```
+
 ## Dynamic Folders
 For this template, I decided to do some magic and use recursion to find commands, button actions, and events. Follow the examples in each of the folders to get a grasp of how this works. Within the commands folder for example, you can organize your commands into folders, making it easy to manage. Using recursion, we find all the nested commands. 
 
